@@ -1,80 +1,51 @@
-# 🏥 Ala Randevu Sistemi (Hospital Appointment System)
+# 🌸 DriveRose - Araç Paylaşım ve Kiralama Sistemi
 
-![Python Version](https://img.shields.io/badge/Python-3.x-blue.svg)
-![Tkinter](https://img.shields.io/badge/GUI-Tkinter-purple.svg)
-![SQLite](https://img.shields.io/badge/Database-SQLite3-lightgrey.svg)
-![Architecture](https://img.shields.io/badge/Architecture-OOP--Layered-success.svg)
+DriveRose, Python kullanılarak geliştirilmiş, standart kütüphaneler ile çalışan hafif ve kullanıcı dostu bir Masaüstü Araç Kiralama/Paylaşım Otomasyonudur.
 
-Modern, karanlık/mor (Dark/Purple) temaya sahip, Python ve Tkinter kullanılarak geliştirilmiş masaüstü Hastane & Klinik Randevu Yönetim Sistemi. Nesne Yönelimli Programlama (OOP) ve Katmanlı Mimari (Layered Architecture) prensiplerine uygun olarak temiz ve sürdürülebilir bir yapıda kodlanmıştır.
+Hiçbir harici kütüphaneye (örneğin `pip install ...` gibi) ihtiyaç duymaz. Sadece Python 3.9 veya daha güncel bir sürümün yüklü olması yeterlidir. Veritabanı olarak dahili SQLite kullanmaktadır.
 
-## 📸 Ekran Görüntüleri
-*(Buraya GitHub'a yüklerken projenin ekran görüntülerini ekleyebilirsiniz)*
-<!--
-![Giriş Ekranı](link_ekle)
-![Hasta Paneli](link_ekle)
-![Admin Paneli](link_ekle)
--->
+## 🚀 Özellikler
 
-## 🌟 Özellikler
+*   **Rol Bazlı Yetkilendirme:** Yönetici (Admin) ve Normal Kullanıcı olmak üzere iki farklı kullanıcı tipi.
+*   **Kullanıcı Modülü:**
+    *   Kayıt olma ve güvenli giriş yapma işlemleri.
+    *   Sistemdeki müsait araçları listeleyebilme ve özelliklerine göre inceleme.
+    *   Araç kiralama (tarih ve gün bazlı otomatik fiyat hesaplamaları).
+    *   Aktif ve geçmiş kiralama kayıtlarını görüntüleme.
+*   **Yönetici (Admin) Modülü:**
+    *   Araç filosu yönetimi (Araç ekleme, düzenleme, silme ve kategori atama).
+    *   Araçlara fotoğraf yükleme ve vitrin (ana) resmi belirleme.
+    *   Sistemde kayıtlı kullanıcıların listesini görüntüleme.
+    *   Tüm kiralama hareketlerini (aktif/geçmiş) sistem üzerinden takip edebilme.
+*   **Modern Arayüz (GUI):** `tkinter` modülü kullanılarak hazırlanmış, özel tasarım renk paleti ve kart yapıları içeren kullanıcı dostu temiz bir arayüz.
+*   **Dahili Veritabanı:** Kurulum gerektirmeyen, güvenilir ve taşınabilir `SQLite3` mimarisi.
 
-### 🛡️ Yetkilendirme ve Güvenlik
-* **Rol Tabanlı Erişim:** Admin, Doktor ve Hasta olmak üzere 3 farklı yetki seviyesi ve paneli.
-* **Güvenli Şifreleme:** Tüm kullanıcı şifreleri veritabanında `SHA-256` ile hashlenerek (şifrelenerek) güvenle saklanır.
+## 🛠️ Kurulum ve Çalıştırma
 
-### ⚙️ Yönetici (Admin) Paneli
-* **Doktor Yönetimi:** Yeni doktor ekleme, doktor silme ve uzmanlık alanları ile çalışma saatlerini belirleme.
-* **Hasta Yönetimi:** Sistemdeki hastaları görüntüleme ve hesaplarını randevu çakışmalarını dikkate alarak silebilme.
-* **Randevu Takibi:** Günlük ve genel tüm randevuları filtreleyip dinamik veri tabloları (Treeview) üzerinde inceleme.
-* **Müdahale:** Gerektiğinde herhangi bir randevuyu idari olarak iptal edebilme.
+1.  Projeyi bilgisayarınıza indirin veya klonlayın:
+    ```bash
+    git clone https://github.com/KULLANICI_ADINIZ/driverose.git
+    cd driverose
+    ```
 
-### 👨‍⚕️ Doktor Paneli
-* **Kişiselleştirilmiş Arayüz:** Doktorların sisteme özel girişi ile sadece kendi hastalarına erişimi.
-* **Günlük Randevular:** O güne ait randevuları ve hasta bilgilerini saat sıralamasına göre listeleme.
-* **Haftalık Randevular:** İleriye dönük 7 günlük detaylı randevu takvimi görüntüleme.
+2.  Projeyi başlatmak için terminal veya komut satırını (CMD/PowerShell) açıp şu komutu çalıştırın:
+    ```bash
+    python main.py
+    ```
 
-### 🩺 Hasta Paneli
-* **Kayıt & Profil:** TC Kimlik Numarası ile güvenli kayıt olma. Ad, Soyad ve İletişim bilgilerini güncelleyebilme.
-* **Dinamik Randevu Sistemi:** Uzmanlık Seçimi ➔ Doktor Seçimi ➔ Dinamik Tarih Seçimi ➔ Saat Seçimi adımlarını izleyerek müsaitlik durumuna göre anında randevu oluşturma.
-* **Dashboard ve İstatistikler:** Modern bir "Bilgilerim" panosu üzerinde aktif randevu sayısını, toplam iptal/geçmiş istatistiklerini ve yaklaşan ilk randevu detaylarını görebilme.
-* **Randevu Yönetimi:** Aktif randevuları görüntüleme ve istenilen randevuyu tek tıkla iptal etme.
+> **Not:** Uygulama ilk kez çalıştırıldığında gerekli veritabanı dosyası (`driverose.db`) otomatik olarak oluşturulacak ve sistem test edebilmeniz için örnek araçlar/kategorilerle yüklenecektir.
 
-## 🛠️ Mimari ve Teknolojiler
+## 🔑 Varsayılan Giriş Bilgileri
 
-* **Programlama Dili:** Python 3.x
-* **Arayüz (GUI):** Tkinter ve `ttk` kütüphaneleri (Klasik Tkinter görünümü yerine tamamen özelleştirilmiş Flat/Modern widget tasarımları kullanılmıştır).
-* **Veritabanı:** SQLite3 (Veriler yerel olarak `randevu_sistemi.db` içerisinde saklanır, harici bir sunucu kurulumu gerektirmez).
-* **Mimari:** GUI, Veritabanı (Data Access) ve İş Mantığı (Domain Models) birbirine sıkı sıkıya bağlı olmayan, modüler 3 katmanlı yapıda kurgulanmıştır.
+Sisteme yönetici paneline erişmek ve tüm özellikleri incelemek için ilk kurulumda otomatik oluşturulan test hesabını kullanabilirsiniz:
 
-## 🚀 Kurulum ve Çalıştırma
+*   **E-posta:** `admin@driverose.com`
+*   **Şifre:** `admin123`
 
-Proje standart kütüphaneler ile yazıldığından harici bir `pip` paketi kurulumu gerektirmez.
+## 📁 Proje Mimarisi (Klasör Yapısı)
 
-1. Depoyu bilgisayarınıza klonlayın (veya zip olarak indirin):
-   ```bash
-   git clone https://github.com/KULLANICI_ADINIZ/ala-randevu-sistemi.git
-   cd "ala-randevu-sistemi"
-   ```
-
-2. Projeyi çalıştırın:
-   ```bash
-   python main.py
-   ```
-
-### 🔑 Varsayılan Yönetici (Admin) Girişi
-Uygulama ilk çalıştırıldığında veritabanını (`randevu_sistemi.db`) ve varsayılan tabloları otomatik oluşturur. Hızlı test edebilmeniz için 15 adet örnek doktor verisi de eklenir.
-* **Kullanıcı Adı:** `admin`
-* **Şifre:** `admin123`
-
-## 📂 Dosya ve Klasör Yapısı
-
-* `main.py` : Uygulama giriş noktası (Entry Point). Veritabanını ve arayüzü birbirine bağlar.
-* `gui.py` : Tkinter ekranları, widget yerleşimleri ve arayüz mantığı.
-* `database.py` : SQLite bağlantısı, tablo kurulumları ve tüm CRUD operasyonlarını barındıran merkezi veritabanı sınıfı.
-* `models.py` : Domain modelleri (`Hasta`, `Doktor`, `Randevu`) ve iş mantığını (Business Logic) kapsayan nesneler.
-* `tema.py` : Sistemin merkezi renk paleti, widget stilleri (`ttk.Style`) ve arayüzü temiz tutan görsel yardımcı fonksiyonlar.
-
-## 🤝 Katkıda Bulunma
-Bu proje geliştirilmeye açıktır. Repoyu `fork` edip değişikliklerinizi yaparak `Pull Request` gönderebilirsiniz.
-
-## 📄 Lisans
-Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır. Dilediğiniz gibi kullanabilir, geliştirebilir ve paylaşabilirsiniz.
+*   `main.py` : Uygulamanın başlatıldığı ana giriş (entry-point) dosyasıdır.
+*   `database.py` : Veritabanı bağlantısı, tabloların oluşturulması ve varsayılan verilerin (admin kullanıcısı, örnek araçlar) veritabanına yazıldığı modüldür.
+*   `gui/` : Uygulamanın tüm görsel arayüz kodlarını içerir. (Giriş ekranı, Kayıt ekranı, Admin Paneli, Kullanıcı Paneli ve Tema motoru)
+*   `models/` : Veritabanı tabloları ile arayüz arasındaki köprüyü kuran (CRUD işlemleri) nesne yönelimli sınıfları barındırır.
+*   `assets/` : Araçlara ait yüklenen görsel ve fotoğrafların barındırıldığı medya dizinidir.
